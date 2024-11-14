@@ -1,25 +1,35 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Home from './components/Home'
-import About from './src/about'
-import Contact from './src/contact'
-// import Education from './src/education'
-// import Project from './src/project'
+import Books from './books/Books.jsx'
+import Wishlist from './wishlist/Wishlist.jsx'
+import Signup from './user/Signup.jsx'
+import Signin from './lib/Signin.jsx'
+import PrivateRoute from './lib/PrivateRoute.jsx'
+
 import Layout from './components/layout'
 const MainRouter = () => {
- return (<div>
- <Layout/>
- <Routes>
- 
-<Route exact path="/" element={<Home />} />
-<Route exact path="/about" element={<About />} />
-{/* <Route exact path="/education" element={<Education />} />
-<Route exact path="/project" element={<Project />} /> */}
-<Route exact path="/contact" element={<Contact />} />
- 
- </Routes>
- </div>
- )
+    return (<div>
+        <Layout />
+        <Routes>
+
+            <Route exact path="/" element={<Home />} />
+            <Route path="/books" element={<Books />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/signin" element={<Signin />} />
+            {/* <Route
+ path="/user/edit/:userId"
+ element={
+ <PrivateRoute>
+ <EditProfile />
+ </PrivateRoute>
+ }
+ /> */}
+
+        </Routes>
+    </div>
+    )
 }
 export default MainRouter
 

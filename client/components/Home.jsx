@@ -6,9 +6,9 @@ export default function Home() {
             <header>
                 <Link to="/about">About</Link><br />
                 <Link to="/contact">Contact</Link>
+                
             </header>
         </>
-
     );
 
 }

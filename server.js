@@ -16,7 +16,7 @@ mongoose.connection.on('error', () => {
 })
 
 app.get("/", (req, res) => {
-    res.json({ message: "Welcome to Suin Portfolio."});
+    res.json({ message: "Welcome to Group project."});
 });
 
 app.listen(config.port, (err) => {
@@ -25,16 +25,6 @@ app.listen(config.port, (err) => {
     }
     console.info('Server started on port %s.', config.port)
 })
-
-
-// app.post("/api/qualifications", (req, res) => {
-//     // Update the existing qualification object with the data received in the request body
-//     console.log(">>>>")
-//     console.log(req)
-
-
-//     res.status(200).json({ message: "Qualification updated successfully!", updatedData: qualification });
-// });
 
 
 
