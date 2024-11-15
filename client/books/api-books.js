@@ -1,12 +1,12 @@
-const create = async (user) => { 
+const create = async (books) => { 
   try {
-  let response = await fetch('/api/contacts/', { 
+  let response = await fetch('/api/books/', { 
   method: 'POST',
   headers: {
   'Accept': 'application/json',
   'Content-Type': 'application/json' 
   },
-  body: JSON.stringify(user) 
+  body: JSON.stringify(books) 
   })
   return await response.json() 
   } catch(err) {
@@ -15,7 +15,7 @@ const create = async (user) => {
   }
   const list = async (signal) => { 
   try {
-  let response = await fetch('/api/contacts/', { 
+  let response = await fetch('/api/books/', { 
   method: 'GET',
   signal: signal, 
   })
@@ -26,7 +26,7 @@ const create = async (user) => {
   }
   const read = async (params, credentials, signal) => { 
   try {
-  let response = await fetch('/api/contacts/' + params.userId, { 
+  let response = await fetch('/api/books/' + params.userId, { 
   method: 'GET',
   signal: signal, 
   headers: {
@@ -42,7 +42,7 @@ const create = async (user) => {
   }
   const update = async (params, credentials, user) => { 
   try {
-  let response = await fetch('/api/contacts/' + params.userId, { 
+  let response = await fetch('/api/books/' + params.userId, { 
   method: 'PUT',
   headers: {
   'Accept': 'application/json',
@@ -58,7 +58,7 @@ const create = async (user) => {
   }
   const remove = async (params, credentials) => { 
   try {
-  let response = await fetch('/api/contacts/' + params.userId, { 
+  let response = await fetch('/api/books/' + params.userId, { 
   method: 'DELETE',
   headers: {
   'Accept': 'application/json',

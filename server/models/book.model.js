@@ -11,10 +11,9 @@ const BookSchema = new mongoose.Schema({
     trim: true,
     required: 'Author is required'
   },
-  genre_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Genre',
-    required: 'Genre is required'
+  genre: {
+    type: String,
+    trim: true,
   },
   published_year: {
     type: Number,

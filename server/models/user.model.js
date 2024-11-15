@@ -26,7 +26,16 @@ hashed_password: {
 type: String,
 required: 'Password is required'
 },
-salt: String
+salt: String,
+wishlist: [
+    {
+      bookId: { type: String, required: true },
+      title: { type: String, required: true },
+      author: { type: String, required: true },
+      genre: { type: String},
+      published_year: { type: Number},
+    }
+  ]
 });
 UserSchema.virtual('password')
 .set(function(password) {

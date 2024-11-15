@@ -16,7 +16,7 @@ error: errorHandler.getErrorMessage(err)
 }
 const list = async (req, res) => { 
 try {
-let users = await User.find().select('name email updated created') 
+let users = await User.find().select('name email updated created wishlist') 
 res.json(users)
 } catch (err) {
 return res.status(400).json({
