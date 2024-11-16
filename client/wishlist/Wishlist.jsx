@@ -1,28 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import auth from '../lib/auth-helper';
+import { update } from '../user/api-user';
 
-import { update } from '../user/api-user.js'
-const testuserID = "6737c0814883343b30133f84"
-
-export default function Wishlist({ userId = testuserID, credentials }) {
-  const [user, setUser] = useState(null); // Store user data
+export default function Wishlist() {
+  const { userId } = useParams(); // URL에서 userId 가져오기
+  const credentials = auth.isAuthenticated(); // 인증 정보 가져오기
+  const [user, setUser] = useState(null);
   const [newItem, setNewItem] = useState({
-    bookId: "",
-    title: "",
-    author: "",
+    title: '',
+    author: '',
+    published_year: '',
+    genre: '',
   });
 
-  // Fetch user data with wishlist on component mount
   useEffect(() => {
     fetchUser();
-  }, []);
+  }, [userId]);
 
   const fetchUser = async () => {
     try {
       const response = await fetch(`/api/users/${userId}`, {
-        method: "GET",
+        method: 'GET',
         headers: {
-          "Accept": "application/json",
-          "Authorization": "Bearer " + credentials.t,
+          Accept: 'application/json',
+          Authorization: 'Bearer ' + credentials.t, // 인증 토큰 사용
         },
       });
 
@@ -32,9 +34,8 @@ export default function Wishlist({ userId = testuserID, credentials }) {
 
       const userData = await response.json();
       setUser(userData);
-      console.log("userData >>>" + userData)
     } catch (error) {
-      console.error("Error fetching user data:", error);
+      console.error('Error fetching user data:', error);
     }
   };
 
@@ -45,41 +46,27 @@ export default function Wishlist({ userId = testuserID, credentials }) {
 
   const addWishlistItem = async () => {
     if (!user) {
-      console.error("User not loaded");
+      console.error('User not loaded');
       return;
     }
 
-    // Add the new item to the wishlist
     const updatedWishlist = [...user.wishlist, newItem];
 
-    // Call the update API
     try {
-      const updatedUser = await update(
-        { userId },
-        credentials,
-        { wishlist: updatedWishlist }
-      );
-      setUser(updatedUser); // Update the local state with the updated user
-      setNewItem({ bookId: "", title: "", author: "" }); // Reset the input fields
+      const updatedUser = await update({ userId }, credentials, { wishlist: updatedWishlist });
+      setUser(updatedUser);
+      setNewItem({ title: '', author: '', published_year: '', genre: '' }); // Reset form
     } catch (error) {
-      console.error("Error updating wishlist:", error);
+      console.error('Error updating wishlist:', error);
     }
   };
 
-
   return (
     <div>
-      {/* <h1>{user.name}'s Wishlist</h1> */}
+      <h3>My Wishlist</h3>
 
-      {/* Form to add new wishlist item */}
       <div>
-        <input
-          type="text"
-          name="bookId"
-          placeholder="Book ID"
-          value={newItem.bookId}
-          onChange={handleInputChange}
-        />
+        {/* Form for adding a new wishlist item */}
         <input
           type="text"
           name="title"
@@ -94,20 +81,46 @@ export default function Wishlist({ userId = testuserID, credentials }) {
           value={newItem.author}
           onChange={handleInputChange}
         />
+        <input
+          type="text"
+          name="published_year"
+          placeholder="Published Year"
+          value={newItem.published_year}
+          onChange={handleInputChange}
+        />
+        <input
+          type="text"
+          name="genre"
+          placeholder="Genre"
+          value={newItem.genre}
+          onChange={handleInputChange}
+        />
         <button onClick={addWishlistItem}>Add to Wishlist</button>
       </div>
 
-      {/* Display wishlist items */}
-      <div>
-        <h2>Wishlist</h2>
-        <ul>
-          {/* {user.wishlist.map((item, index) => (
-            <li key={index}>
-              <strong>{item.title}</strong> by {item.author}
-            </li>
-          ))} */}
-        </ul>
-      </div>
+      {user && (
+        <div>
+          <h2>{user.username}'s Wishlist</h2>
+          {user && user.wishlist ? ( // Check if `user` and `wishlist` exist
+            user.wishlist.length > 0 ? ( // Check if `wishlist` has items
+              <ul>
+                {user.wishlist.map((item, index) => (
+                  <li key={index}>
+                    <strong>{item.title}</strong> by {item.author} <br />
+                    Published Year: {item.published_year} <br />
+                    Genre: {item.genre}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>Your wishlist is empty. Start adding some books!</p> // Message for empty wishlist
+            )
+          ) : (
+            <div></div>
+          )}
+        </div>
+      )}
+    
     </div>
   );
 }

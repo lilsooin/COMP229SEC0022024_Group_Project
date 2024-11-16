@@ -29,7 +29,6 @@ required: 'Password is required'
 salt: String,
 wishlist: [
     {
-      bookId: { type: String, required: true },
       title: { type: String, required: true },
       author: { type: String, required: true },
       genre: { type: String},

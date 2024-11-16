@@ -11,6 +11,14 @@ export default function Layout() {
     const navigate = useNavigate();
     const location = useLocation();
 
+    // Check if the user is authenticated and log their user ID
+    const authenticatedUser = auth.isAuthenticated();
+    if (authenticatedUser) {
+        console.log("Authenticated User ID:", authenticatedUser.user._id);
+    } else {
+        console.log("User is not authenticated.");
+    }
+
     return (
         <>
             <header>
@@ -29,7 +37,9 @@ export default function Layout() {
                             </>
                         ) : (
                             <>
-                                <Link to="/wishlist" style={isActive(location, "/wishlist/" + auth.isAuthenticated().user._id)}>My Wishlist</Link> |
+                                <Link
+                                    to={`/wishlist/${auth.isAuthenticated().user._id}`} // 동적 userId 전달
+                                    style={isActive(location, "/wishlist/" + auth.isAuthenticated().user._id)}>My Wishlist</Link> |
                                 <span
                                     style={{ cursor: 'pointer', color: '#ff4081' }}
                                     onClick={() => {
