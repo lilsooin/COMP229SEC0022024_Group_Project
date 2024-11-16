@@ -16,6 +16,7 @@ export default function Home() {
             <main>
                 <section>
                     <h2>Instructions</h2>
+                    <String>Read, Share, Achieve</String>
                     <ul>
                         <li>
                             <strong>Books List:</strong> Navigate to the "Books List" page to view all available books categorized by genre.

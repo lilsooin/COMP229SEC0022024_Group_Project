@@ -24,7 +24,7 @@ export default function Wishlist() {
         method: 'GET',
         headers: {
           Accept: 'application/json',
-          Authorization: 'Bearer ' + credentials.t, // 인증 토큰 사용
+          Authorization: 'Bearer ' + credentials.token, // 인증 토큰 사용
         },
       });
 
@@ -33,6 +33,10 @@ export default function Wishlist() {
       }
 
       const userData = await response.json();
+
+      if (!userData.wishlist) {
+        userData.wishlist = []; // Ensure wishlist is an array
+      }
       setUser(userData);
     } catch (error) {
       console.error('Error fetching user data:', error);
@@ -50,7 +54,12 @@ export default function Wishlist() {
       return;
     }
 
-    const updatedWishlist = [...user.wishlist, newItem];
+    if (!newItem.title || !newItem.author || !newItem.published_year || !newItem.genre) {
+      alert('Please fill in all fields before adding to the wishlist.');
+      return;
+    }
+
+    const updatedWishlist = [...(user.wishlist || []), newItem];
 
     try {
       const updatedUser = await update({ userId }, credentials, { wishlist: updatedWishlist });
@@ -61,11 +70,27 @@ export default function Wishlist() {
     }
   };
 
-  return (
-    <div>
-      <h3>My Wishlist</h3>
+  const deleteWishlistItem = async (index) => {
+    if (!user) {
+      console.error('User not loaded');
+      return;
+    }
 
-      <div>
+    const updatedWishlist = user.wishlist.filter((_, i) => i !== index);
+
+    try {
+      const updatedUser = await update({ userId }, credentials, { wishlist: updatedWishlist });
+      setUser(updatedUser); // Update the local state with the updated user
+    } catch (error) {
+      console.error('Error deleting wishlist item:', error);
+    }
+  };
+
+  return (
+    <div style={{ fontFamily: 'Arial, sans-serif', maxWidth: '800px', margin: '20px auto', padding: '20px', border: '1px solid #ddd', borderRadius: '8px', backgroundColor: '#f9f9f9', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
+      <h3 style={{ color: '#333', marginBottom: '20px' }}>My Wishlist</h3>
+
+      <div style={{ marginBottom: '20px' }}>
         {/* Form for adding a new wishlist item */}
         <input
           type="text"
@@ -73,6 +98,7 @@ export default function Wishlist() {
           placeholder="Title"
           value={newItem.title}
           onChange={handleInputChange}
+          style={{ width: '48%', margin: '5px 1%', padding: '10px', border: '1px solid #ccc', borderRadius: '4px', fontSize: '14px' }}
         />
         <input
           type="text"
@@ -80,6 +106,7 @@ export default function Wishlist() {
           placeholder="Author"
           value={newItem.author}
           onChange={handleInputChange}
+          style={{ width: '48%', margin: '5px 1%', padding: '10px', border: '1px solid #ccc', borderRadius: '4px', fontSize: '14px' }}
         />
         <input
           type="text"
@@ -87,6 +114,7 @@ export default function Wishlist() {
           placeholder="Published Year"
           value={newItem.published_year}
           onChange={handleInputChange}
+          style={{ width: '48%', margin: '5px 1%', padding: '10px', border: '1px solid #ccc', borderRadius: '4px', fontSize: '14px' }}
         />
         <input
           type="text"
@@ -94,33 +122,41 @@ export default function Wishlist() {
           placeholder="Genre"
           value={newItem.genre}
           onChange={handleInputChange}
+          style={{ width: '48%', margin: '5px 1%', padding: '10px', border: '1px solid #ccc', borderRadius: '4px', fontSize: '14px' }}
         />
-        <button onClick={addWishlistItem}>Add to Wishlist</button>
+        <button onClick={addWishlistItem} style={{ padding: '10px 20px', backgroundColor: '#28a745', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '14px', marginTop: '10px' }}>
+          Add to Wishlist
+        </button>
       </div>
 
       {user && (
         <div>
-          <h2>{user.username}'s Wishlist</h2>
-          {user && user.wishlist ? ( // Check if `user` and `wishlist` exist
-            user.wishlist.length > 0 ? ( // Check if `wishlist` has items
-              <ul>
+          <h2 style={{ color: '#555', marginBottom: '20px' }}>{user.username}'s Wishlist</h2>
+          {user && user.wishlist ? (
+            user.wishlist.length > 0 ? (
+              <ul style={{ listStyle: 'none', padding: '0' }}>
                 {user.wishlist.map((item, index) => (
-                  <li key={index}>
-                    <strong>{item.title}</strong> by {item.author} <br />
+                  <li key={index} style={{ marginBottom: '15px', padding: '10px', border: '1px solid #ddd', borderRadius: '4px', backgroundColor: '#fff', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
+                    <strong style={{ fontSize: '16px', color: '#333' }}>{item.title}</strong> by {item.author} <br />
                     Published Year: {item.published_year} <br />
-                    Genre: {item.genre}
+                    Genre: {item.genre} <br />
+                    <button
+                      style={{ marginTop: '10px', padding: '8px 16px', backgroundColor: '#dc3545', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '14px' }}
+                      onClick={() => deleteWishlistItem(index)}
+                    >
+                      Delete
+                    </button>
                   </li>
                 ))}
               </ul>
             ) : (
-              <p>Your wishlist is empty. Start adding some books!</p> // Message for empty wishlist
+              <p>Your wishlist is empty. Start adding some books!</p>
             )
           ) : (
             <div></div>
           )}
         </div>
       )}
-    
     </div>
   );
 }
