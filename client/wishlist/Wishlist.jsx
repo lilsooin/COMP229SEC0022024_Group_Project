@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 import { update } from '../user/api-user.js'
-import { userByID } from '../user/api-user.js'
 const testuserID = "6737c0814883343b30133f84"
 
 export default function Wishlist({ userId = testuserID, credentials }) {
@@ -23,8 +22,7 @@ export default function Wishlist({ userId = testuserID, credentials }) {
         method: "GET",
         headers: {
           "Accept": "application/json",
-          //"Authorization": "Bearer " + credentials.t,
-          "Authorization": "Bearer " + eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzM3YzA4MTQ4ODMzNDNiMzAxMzNmODQiLCJpYXQiOjE3MzE3MDgzODF9.pXYKKvw-Q3O-hC72KuHCpRB9U0psYqipXE7f3kflj5k,
+          "Authorization": "Bearer " + credentials.t,
         },
       });
 

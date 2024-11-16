@@ -15,7 +15,7 @@ const MainRouter = () => {
 
             <Route exact path="/" element={<Home />} />
             <Route path="/books" element={<Books />} />
-            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/wishlist/:userId" element={<Wishlist />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/signin" element={<Signin />} />
 
