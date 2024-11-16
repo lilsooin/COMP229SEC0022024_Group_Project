@@ -15,20 +15,22 @@ export default function Signup() {
   const [open, setOpen] = useState(false);
   const [responseMessage, setResponseMessage] = useState("");
 
-  const handleChange = (name) => (event) => {
-    setValues({ ...values, [name]: event.target.value });
+  const handleChange = (username) => (event) => {
+    setValues({ ...values, [username]: event.target.value });
   };
 
 
   const clickSubmit = (e) => {
     e.preventDefault(); // Prevent default form submission behavior
     const user = {
-      name: values.name || undefined,
+      username: values.username || undefined,
       email: values.email || undefined,
       password: values.password || undefined
     };
 
     create(user).then((data) => {
+      console.log("user >>" + user)
+      console.log("data >>" + data)
       if (data.error) {
         setValues({ ...values, error: data.error });
         setResponseMessage(`Error: ${data.error}`);

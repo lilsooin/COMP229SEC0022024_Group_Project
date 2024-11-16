@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { update } from '../user/api-user.js'
-
+import { userByID } from '../user/api-user.js'
 const testuserID = "6737c0814883343b30133f84"
 
 export default function Wishlist({ userId = testuserID, credentials }) {
