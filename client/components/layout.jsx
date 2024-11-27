@@ -28,6 +28,8 @@ export default function Layout() {
 
                 <nav>
                     <Link to="/" style={isActive(location, "/")}>Home</Link> |
+                    <Link to="/users" style={isActive(location, "/users")}>Users</Link> |
+
                     <Link to="/books" style={isActive(location, "/books")}>Books</Link> |
                     {
                         !auth.isAuthenticated() ? (
@@ -40,8 +42,12 @@ export default function Layout() {
                                 <Link
                                     to={`/wishlist/${auth.isAuthenticated().user._id}`} // 동적 userId 전달
                                     style={isActive(location, "/wishlist/" + auth.isAuthenticated().user._id)}>My Wishlist</Link> |
+
+                                <Link to={"/user/" + auth.isAuthenticated().user._id}
+                                    style={isActive(location, "/user/" + auth.isAuthenticated().user._id)}>My Profile
+                                </Link> |
                                 <span
-                                    style={{ cursor: 'pointer', color: '#ff4081' }}
+                                    style={{ color: '#0000ff', cursor: 'pointer' }}
                                     onClick={() => {
                                         auth.clearJWT(() => navigate('/'));
                                     }}
@@ -51,6 +57,9 @@ export default function Layout() {
                             </>
                         )
                     }
+
+
+
                 </nav>
                 <h2>Library App</h2>
             </header>
