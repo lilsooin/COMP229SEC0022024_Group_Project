@@ -5,32 +5,26 @@ export default function Home() {
         <>
             {/* Header Section */}
             <header>
-                <h2>Welcome to the Library App</h2>
+                <h2>Welcome Back to the Library App</h2>
                 <p>
-                    {/* Description of the App */}
-                    Discover a wide collection of books, manage your wishlist, and enjoy personalized features by logging in.
+                    Manage your library, keep track of your wishlist, and explore new books tailored for you.
                 </p>
             </header>
 
             {/* Instructions Section */}
             <main>
                 <section>
-                    <h2>Instructions</h2>
-                    <strong>Read, Share, Achieve</strong>
+                    <h2>Your Library Hub</h2>
                     <ul>
                         <li>
-                            <strong>Books List:</strong> Navigate to the "Books List" page to view all available books categorized by genre.
+                            <strong>Books List:</strong> Visit the <Link to="/books">Books List</Link> to view all available books by genre.
                         </li>
                         <li>
-                            <strong>Login:</strong> Log in to access personalized features like managing your wishlist.
-                        </li>
-                        <li>
-                            <strong>Wishlist:</strong> After logging in, you can:
+                            <strong>Wishlist:</strong> Manage your wishlist:
                             <ul>
-                                <li>Add books to your wishlist.</li>
-                                <li>View your current wishlist.</li>
-                                <li>Update notes or details for books in your wishlist.</li>
-                                <li>Remove books from your wishlist.</li>
+                                <li>Add books you love.</li>
+                                <li>View and organize your list.</li>
+                                <li>Update notes or remove books when done.</li>
                             </ul>
                         </li>
                     </ul>
