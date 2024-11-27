@@ -28,7 +28,7 @@ export default function Layout() {
 
                 <nav>
                     <Link to="/" style={isActive(location, "/")}>Home</Link> |
-                    <Link to="/users" style={isActive(location, "/users")}>Users</Link> |
+                    <Link to="/users" style={isActive(location, "/users")}>Library Users</Link> |
 
                     <Link to="/books" style={isActive(location, "/books")}>Books</Link> |
                     {
