@@ -14,7 +14,7 @@ export default function Landing() {
                 <h2>Why Join Us?</h2>
                 <p>Explore thousands of books, create your wishlist, and enjoy personalized recommendations tailored just for you.</p>
                 <p>
-                    <strong>Get Started:</strong> <Link to="/signin">Log in</Link> or <Link to="/signup">Sign up</Link> to unlock all features.
+                    <strong>Get Started:</strong> <Link to="/signin">Sign in</Link> or <Link to="/signup">Sign up</Link> to unlock all features.
                 </p>
             </section>
 

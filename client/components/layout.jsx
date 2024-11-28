@@ -44,8 +44,8 @@ export default function Layout() {
                                     to={`/wishlist/${auth.isAuthenticated().user._id}`} // 동적 userId 전달
                                     style={isActive(location, "/wishlist/" + auth.isAuthenticated().user._id)}>My Wishlist</Link> |
 
-                                <Link to={"/user/" + auth.isAuthenticated().user._id}
-                                    style={isActive(location, "/user/" + auth.isAuthenticated().user._id)}>My Profile
+                                <Link to={"/myprofile/" + auth.isAuthenticated().user._id}
+                                    style={isActive(location, "/myprofile/" + auth.isAuthenticated().user._id)}>My Profile
                                 </Link> |
                                 <span
                                     style={{ color: '#0000ff', cursor: 'pointer' }}

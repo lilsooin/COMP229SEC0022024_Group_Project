@@ -5,6 +5,7 @@ import Landing from './components/Landing'
 import Users from './user/Users.jsx'
 import Books from './books/Books.jsx'
 import Wishlist from './wishlist/Wishlist.jsx'
+import MyProfile from './user/Profile.jsx'
 import Signup from './user/Signup.jsx'
 import Signin from './lib/Signin.jsx'
 import PrivateRoute from './lib/PrivateRoute.jsx'
@@ -20,6 +21,7 @@ const MainRouter = () => {
             <Route exact path="/users" element={<Users />} />
             <Route path="/books" element={<Books />} />
             <Route path="/wishlist/:userId" element={<Wishlist />} />
+            <Route path="/myprofile/:userId" element={<MyProfile />} />A
             <Route path="/signup" element={<Signup />} />
             <Route path="/signin" element={<Signin />} />
 
