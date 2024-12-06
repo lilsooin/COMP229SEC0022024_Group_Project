@@ -23,6 +23,7 @@ export default function Signin() {
       password: values.password || undefined
     };
     console.log(user);
+
     signin(user).then((data) => {
       if (data.error) {
         console.log("error >>>");
@@ -31,6 +32,8 @@ export default function Signin() {
         console.log("else >>>");
         console.log(data);
         auth.authenticate(data, () => {
+          console.log("else >>> data " + data)
+
           setValues({ ...values, redirectToReferrer: true });
         });
       }
