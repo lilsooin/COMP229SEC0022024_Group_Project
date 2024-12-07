@@ -7,7 +7,7 @@ const signin = async (user) => {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                "Access-Control-Allow-Origin": "https://rsa-library-suin.netlify.app"
+                "Access-Control-Allow-Origin": "https://legendary-kelpie-11c09f.netlify.app/"
             },
             credentials: 'include',
             body: JSON.stringify(user)

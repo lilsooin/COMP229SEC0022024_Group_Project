@@ -14,7 +14,7 @@ const app = express()
 const CURRENT_WORKING_DIR = process.cwd()
 
 const corsOptions = {
-    origin: ["https://rsa-library-suin.netlify.app", "http://localhost:5173"], 
+    origin: ["https://legendary-kelpie-11c09f.netlify.app", "http://localhost:5173"], 
     credentials: true,
     optionSuccessStatus: 200,
 };

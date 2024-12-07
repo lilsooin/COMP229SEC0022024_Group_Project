@@ -8,12 +8,12 @@ export default defineConfig({
  server:{
      proxy:{
      '/api':{
-     target:`https://comp229sec0022024-group-project-3.onrender.com`,
+     target:`https://comp229sec0022024-group-project2.onrender.com`,
      changeOrigin: true,
      rewrite: (path) => path.replace(/^\/api/, '')
      },
      '/auth': {
-     target:`https://comp229sec0022024-group-project-3.onrender.com`,
+     target:`https://comp229sec0022024-group-project2.onrender.com`,
      changeOrigin: true,
      rewrite: (path) => path.replace(/^\/auth/, '')
      },
