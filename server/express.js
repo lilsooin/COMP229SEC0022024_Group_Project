@@ -14,7 +14,7 @@ const app = express()
 const CURRENT_WORKING_DIR = process.cwd()
 
 const corsOptions = {
-    origin: "*",
+    origin: "https://animated-lamington-627514.netlify.app",
     credentials: true,
     optionSuccessStatus: 200,
 };

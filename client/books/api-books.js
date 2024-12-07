@@ -32,7 +32,8 @@ const create = async (books) => {
   headers: {
   'Accept': 'application/json',
   'Content-Type': 'application/json',
-  'Authorization': 'Bearer ' + credentials.t 
+  'Authorization': 'Bearer ' + credentials.t,
+  "Access-Control-Allow-Origin": "*"
   }
   })
   return await response.json() 
@@ -47,7 +48,8 @@ const create = async (books) => {
   headers: {
   'Accept': 'application/json',
   'Content-Type': 'application/json',
-  'Authorization': 'Bearer ' + credentials.t 
+  'Authorization': 'Bearer ' + credentials.t,
+  "Access-Control-Allow-Origin": "*"
   },
   body: JSON.stringify(user) 
   })
@@ -63,7 +65,8 @@ const create = async (books) => {
   headers: {
   'Accept': 'application/json',
   'Content-Type': 'application/json',
-  'Authorization': 'Bearer ' + credentials.t 
+  'Authorization': 'Bearer ' + credentials.t ,
+  "Access-Control-Allow-Origin": "*"
   }
   })
   return await response.json() 

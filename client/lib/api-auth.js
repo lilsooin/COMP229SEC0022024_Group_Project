@@ -6,7 +6,8 @@ const signin = async (user) => {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "https://animated-lamington-627514.netlify.app"
             },
             credentials: 'include',
             body: JSON.stringify(user)
@@ -24,7 +25,9 @@ const signin = async (user) => {
 }
 const signout = async () => {
     try {
-        let response = await fetch('https://comp229sec0022024-group-project2.onrender.com/auth/signout/', { method: 'GET' })
+        let response = await fetch('https://comp229sec0022024-group-project2.onrender.com/auth/signout/', { method: 'GET',
+            headers: {"Access-Control-Allow-Origin": "*"}
+         })
         return await response.json()
     } catch (err) {
         console.log(err)
