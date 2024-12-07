@@ -13,12 +13,12 @@ import path from 'path'
 const app = express()
 const CURRENT_WORKING_DIR = process.cwd()
 
-// const corsOptions = {
-//     origin: "*",
-//     credentials: true,
-//     optionSuccessStatus: 200,
-// };
-// app.use(cors(corsOptions));
+const corsOptions = {
+    origin: "*",
+    credentials: true,
+    optionSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 
 
 console.log("process.env.REACT_BASE_URL >> "  + process.env.REACT_BASE_URL)
@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(compress())
 app.use(helmet())
-app.use(cors())
+// app.use(cors())
 app.use((err, req, res, next) => {
  if (err.name === 'UnauthorizedError') {
  res.status(401).json({"error" : err.name + ": " + err.message}) 
