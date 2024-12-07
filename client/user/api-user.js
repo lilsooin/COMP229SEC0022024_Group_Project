@@ -5,7 +5,7 @@ const create = async (user) => {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                "Access-Control-Allow-Origin": "*"
+                "Access-Control-Allow-Origin": "https://legendary-kelpie-11c09f.netlify.app"
             },
             body: JSON.stringify(user)
         })
@@ -20,7 +20,7 @@ const list = async (signal) => {
             method: 'GET',
             signal: signal,
             headers: {
-                "Access-Control-Allow-Origin": "*"
+                "Access-Control-Allow-Origin": "https://legendary-kelpie-11c09f.netlify.app"
               },
             
         })
@@ -38,7 +38,7 @@ const read = async (params, credentials, signal) => {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + credentials.t,
-                "Access-Control-Allow-Origin": "*"
+                "Access-Control-Allow-Origin": "https://legendary-kelpie-11c09f.netlify.app"
             }
         })
         return await response.json()
@@ -54,7 +54,7 @@ const update = async (params, credentials, user) => {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + credentials.t,
-                "Access-Control-Allow-Origin": "*"
+                "Access-Control-Allow-Origin": "https://legendary-kelpie-11c09f.netlify.app"
             },
             body: JSON.stringify(user)
         })
@@ -71,7 +71,7 @@ const remove = async (params, credentials) => {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + credentials.t,
-                "Access-Control-Allow-Origin": "*"
+                "Access-Control-Allow-Origin": "https://legendary-kelpie-11c09f.netlify.app"
             }
         })
         return await response.json()
