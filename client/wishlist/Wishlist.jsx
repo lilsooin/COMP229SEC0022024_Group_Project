@@ -20,11 +20,12 @@ export default function Wishlist() {
 
   const fetchUser = async () => {
     try {
-      const response = await fetch(`/api/users/${userId}`, {
+      const response = await fetch(`https://comp229sec0022024-group-project2.onrender.com/api/users/${userId}`, {
         method: 'GET',
         headers: {
           Accept: 'application/json',
           Authorization: 'Bearer ' + credentials.token, // 인증 토큰 사용
+          "Access-Control-Allow-Origin": "https://legendary-kelpie-11c09f.netlify.app/"
         },
       });
 
