@@ -1,6 +1,6 @@
 const create = async (user) => {
     try {
-        let response = await fetch('https://comp229sec0022024-group-project-3.onrender.com/api/users/', {
+        let response = await fetch('https://comp229sec0022024-group-project2.onrender.com/api/users/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -16,7 +16,7 @@ const create = async (user) => {
 }
 const list = async (signal) => {
     try {
-        let response = await fetch('https://comp229sec0022024-group-project-3.onrender.com/api/users', {
+        let response = await fetch('https://comp229sec0022024-group-project2.onrender.com/api/users', {
             method: 'GET',
             signal: signal,
             headers: {

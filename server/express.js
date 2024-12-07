@@ -23,11 +23,11 @@ const CURRENT_WORKING_DIR = process.cwd()
 
 console.log("process.env.REACT_BASE_URL >> "  + process.env.REACT_BASE_URL)
 app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*')
-    res.setHeader('Access-Control-Request-Method', '*')
-    res.setHeader('Access-Control-Allow-Headers', '*')
-})
+// app.use((req, res, next) => {
+//     res.setHeader('Access-Control-Allow-Origin', '*')
+//     res.setHeader('Access-Control-Request-Method', '*')
+//     res.setHeader('Access-Control-Allow-Headers', '*')
+// })
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/', userRoutes)

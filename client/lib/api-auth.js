@@ -1,8 +1,8 @@
-// const BASE_URL = https://comp229sec0022024-group-project-3.onrender.com
+// const BASE_URL = https://comp229sec0022024-group-project2.onrender.com
 
 const signin = async (user) => {
     try {
-        let response = await fetch('/auth/signin/', {
+        let response = await fetch('https://comp229sec0022024-group-project2.onrender.com/auth/signin/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -24,7 +24,7 @@ const signin = async (user) => {
 }
 const signout = async () => {
     try {
-        let response = await fetch('/auth/signout/', { method: 'GET' })
+        let response = await fetch('https://comp229sec0022024-group-project2.onrender.com/auth/signout/', { method: 'GET' })
         return await response.json()
     } catch (err) {
         console.log(err)
